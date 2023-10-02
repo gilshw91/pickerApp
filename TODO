@@ -7,7 +7,7 @@
 7. Choose currency
 8. Storysook
 9. Reusable components
-10. Save form state if going back
+10. Store data in global statemnt
 11. Buttons variants (priimary, secondary, tertiary...)
 12. Stepper to see the flow
 13. validation

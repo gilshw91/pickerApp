@@ -3,30 +3,62 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import '@styles/globals.css';
+import { AppButton, AppPlanCard, AppTitle } from '@/components';
 
 
 const ConfirmationPage: React.FC = () => {
-const [cardData, setCardData] = useState<IPlan>()
+  const [cardsData, setCardsData] = useState<IPlan[]>([])
 
-useEffect(() => {
-  const data = localStorage.getItem('selectedCard')
-  data && setCardData(JSON.parse(data))
-}, [])
+  useEffect(() => {
+    const data = localStorage.getItem('selectedCard')
+    if (data) {
+      const details: IPlan = JSON.parse(data)
+      const cards: IPlan[] = [
+        {
+          id: 1,
+          title: 'Subscription Plan',
+          description: '',
+          currency: '',
+          price: details.title,
+          intervalType: ''
+        },
+        {
+          id: 2,
+          title: 'Interval',
+          description: '',
+          currency: '',
+          price: details.intervalType.toString(),
+          intervalType: ''
+        },
+
+        {
+          id: 3,
+          title: 'Price',
+          description: "",
+          currency: '',
+          price: `${details.currency}${details.price}`,
+          intervalType: ''
+        },
+      ]
+      setCardsData(cards)
+    }
+  }, [])
 
 
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold mb-4">Confirmation Page</h1>
-      <div className="bg-white p-4 rounded shadow-md">
-        <p className="text-lg font-bold mb-2">{`ID: ${cardData?.id}`}</p>
-        <p className="text-gray-600">{`Plan: ${cardData?.title}`}</p>
-        <p className="text-gray-600">{`Description: ${cardData?.description}`}</p>
-        <p className="text-gray-600">{`Price: ${cardData?.currency}${cardData?.price}`}</p>
+    <div className="p-4 flex flex-col relative w-[100vw] h-[100vh] items-center space-y-4">
+        <AppTitle label="Confirmation" />
+      <div className="flex flex-col items-center space-y-4 w-[100%] relative md:h-auto">
+        {cardsData.map((card) => {
+          return <AppPlanCard key={card.id} plan={card} selectedPlan={-1} />
+        })}
       </div>
-      <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Buy Now</button>
-      <Link href="/checkout" className="mt-4 text-blue-500 underline">
+      <div className='flex flex-col mt-4 space-y-4 fixed md:static bottom-10 w-[70%] md:pt-40 md:max-w-[30vw]'>
+
+      <Link href="/checkout" className="btn-text mt-4 ">
         Back to Checkout Page
       </Link>
+    </div>
     </div>
   );
 };

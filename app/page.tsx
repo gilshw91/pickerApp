@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from 'next/image'
-import { AppButton, AppPlanCard } from "./components";
-import Link from "next/link";
+import { AppButton, AppPlanCard, AppTitle } from "./components";
 import '@styles/globals.css';
 
 
@@ -42,7 +41,6 @@ const PickerPage = () => {
 
   return (
     <div className="p-4 flex flex-col relative w-[100vw] h-[100vh] items-center space-y-4">
-
       <div className="flex flex-col items-center md:justify-between md:flex-row space-x-10">
         <Image
           className="w-[10%] object-contain mix-blend-multiply"
@@ -52,7 +50,8 @@ const PickerPage = () => {
           sizes="10%"
           alt="Premium Kit"
         />
-        <h1 className="text-[4vw] md:text-[2vw]  font-bold mb-4 text-center text-blue-950 transition-all duration-150 ease-out">Upgrade now and receive total endpoint protection</h1>
+        <AppTitle label="Upgrade now and receive total endpoint protection" />
+        {/* <h1 className="text-[4vw] md:text-[2vw]  font-bold mb-4 text-center text-blue-950 transition-all duration-150 ease-out">Upgrade now and receive total endpoint protection</h1> */}
       </div>
       <div className="flex flex-col items-center space-y-4 w-[100%] relative md:h-auto">
         {plansData?.map((plan) => (

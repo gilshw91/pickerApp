@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { AppButton, AppInputField } from '@/components';
+import { AppButton, AppInputField, AppTitle } from '@/components';
 import { hasEmptyValues } from '@/libs';
 import '@styles/globals.css';
 
@@ -56,18 +56,20 @@ const CheckoutPage: React.FC = () => {
       value: fields.cvv,
       type: 'number',
       onChange: handleChange,
-      required: true
+      required: true,
     }
   ])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     router.push('/confirmation')
+    localStorage.setItem('firstName', fields.firstName )
+    localStorage.setItem('fourDigits', fields.expiryDate.slice(-4,0) )
   }
-  
+
   return (
     <div className="p-4 w-[100vw] flex flex-col items-center">
-      <h1 className="text-[4vw] md:text-[2vw]  font-bold mb-4 text-center text-blue-950 transition-all duration-150 ease-out">Checkout Page</h1>
+      <AppTitle label='Checkout Page' />
       <form onSubmit={handleSubmit} className='flex flex-col items-center w-[90%]'>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-[100%]">
           {fieldsInputs.map((field) => {
@@ -75,7 +77,7 @@ const CheckoutPage: React.FC = () => {
           })}
         </div>
         <div className='flex flex-col mt-4 space-y-4 fixed md:static bottom-10 w-[70%] md:pt-40 md:max-w-[30vw]'>
-          <AppButton type="submit" label='Buy Now' className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" disabled={hasEmptyValues(fields)}/>
+          <AppButton type="submit" label='Buy Now' className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" disabled={hasEmptyValues(fields)} />
           <Link href="/" className="btn-text" >Back to Home</Link>
         </div>
       </form>
