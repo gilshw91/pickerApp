@@ -2,8 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Image from 'next/image'
-import { AppButton, AppPlanCard, AppTitle } from "./components";
+import { 
+  AppButton, 
+  AppDivider, 
+  AppPlanCard, 
+  AppSections, 
+  AppTitle 
+} from "./components";
 import '@styles/globals.css';
+import { fields } from "./libs";
 
 
 const PickerPage = () => {
@@ -51,8 +58,10 @@ const PickerPage = () => {
           alt="Premium Kit"
         />
         <AppTitle label="Upgrade now and receive total endpoint protection" />
-        {/* <h1 className="text-[4vw] md:text-[2vw]  font-bold mb-4 text-center text-blue-950 transition-all duration-150 ease-out">Upgrade now and receive total endpoint protection</h1> */}
       </div>
+      <AppSections items={fields} className="sm:hidden md:flex" />
+    <AppDivider />
+
       <div className="flex flex-col items-center space-y-4 w-[100%] relative md:h-auto">
         {plansData?.map((plan) => (
           <AppPlanCard key={plan.id} plan={plan} selectedPlan={selectedPlan} onRadioChange={handleRadioChange} />

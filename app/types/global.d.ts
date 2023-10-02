@@ -19,4 +19,9 @@ declare global {
     expiryDate: string,
     cvv: string,
   }
+
+  interface IItem {
+    label?: string;
+    imgSrc?: string;
+  }
 }
