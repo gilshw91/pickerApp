@@ -1,0 +1,12 @@
+1. Global styles file to share reusable style 
+2. Error handling
+3. Sign up
+4. Tests
+5. i18n to support lang
+6. Const of texts
+7. Choose currency
+8. Storysook
+9. Reusable components
+10. Save form state if going back
+11. Buttons variants (priimary, secondary, tertiary...)
+12. Stepper to see the flow
