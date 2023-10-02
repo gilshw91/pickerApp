@@ -10,6 +10,7 @@
 10. Save form state if going back
 11. Buttons variants (priimary, secondary, tertiary...)
 12. Stepper to see the flow
+13. validation
 
 
 Vercel deploy:

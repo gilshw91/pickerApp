@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import Image from 'next/image'
 import { AppButton, AppPlanCard } from "./components";
+import Link from "next/link";
+import '@styles/globals.css';
+
 
 const PickerPage = () => {
   const [plansData, setPlansData] = useState<IPlan[]>([]);
