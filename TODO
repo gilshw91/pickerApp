@@ -10,3 +10,8 @@
 10. Save form state if going back
 11. Buttons variants (priimary, secondary, tertiary...)
 12. Stepper to see the flow
+
+
+Vercel deploy:
+vercel build
+vercel deploy --prebuilt

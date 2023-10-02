@@ -1,0 +1,32 @@
+{
+    "plans": [
+      {
+        "id": 1,
+        "intervalType": "month",
+        "price": 59.99,
+        "currency": "₪",
+        "title": "6 Months Subscription",
+        "description": "Billed as one payment of ₪125.40 recurring every 6 months"
+      },
+      {
+        "id": 2,
+        "intervalType": "month",
+        "price": 99.99,
+        "currency": "₪",
+        "title": "1 Year Subscription",
+        "description": "Billed as one payment of ₪178.80 recurring every 12 months",
+        "save": 29
+      },
+      {
+        "id": 3,
+        "intervalType": "month",
+        "price": 179.99,
+        "currency": "₪",
+        "title": "2 Years Subscription",
+        "description": "Billed as one payment of ₪285.60 recurring every 24 months",
+        "save": 43
+
+      }
+    ]
+  }
+  

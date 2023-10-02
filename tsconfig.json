@@ -19,17 +19,17 @@
         "name": "next"
       }
     ],
-    "baseUrl": "/app",
+    "baseUrl": "./app",
     "paths": {
       "@/*": ["./*"],
       "@components/*": [
         "./components/*"
       ],
       "@libs/*": [
-        "./libs/*"
+        "/libs/*"
       ],
       "@styles/*": [
-        "./styles/*"
+        "/styles/*"
       ],
     }
   },
