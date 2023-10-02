@@ -1,1 +1,3 @@
-export * from './AppPlanCard/index'
+export { default as AppPlanCard } from './AppPlanCard';
+export { default as AppButton } from './AppButton';
+

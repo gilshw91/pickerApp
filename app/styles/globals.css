@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btn-contained {
+    @apply flex justify-center px-4 py-2 bg-orange-400 border-orange-400 hover:bg-orange-500 hover:border-orange-500 disabled:bg-slate-200 disabled:cursor-not-allowed text-white rounded-full shadow-md drop-shadow-lg;
+  }
+
+  .btn-text {
+    @apply flex justify-center px-4 py-2 bg-transparent hover:bg-orange-100 text-orange-400 rounded-full shadow-md drop-shadow-lg;
+  }
+
+  .input-text {
+    @apply w-full p-2 border bg-blue-200 rounded-lg shadow-md outline border-none outline-transparent outline-2 md:outline-1 focus:outline-blue-500;
+  }
+
+  .input-date {
+    @apply w-full p-2 border bg-blue-200 rounded-lg shadow-md outline border-none outline-transparent outline-2 md:outline-1 focus:outline-blue-500;
+
+  }
+
+  .input-number {
+    @apply w-full p-2 border bg-blue-200 rounded-lg shadow-md outline border-none outline-transparent outline-2 md:outline-1 focus:outline-blue-500;
+  }
+
+  .input-radio {
+    @apply text-blue-500 hidden md:inline-block;
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -18,10 +45,6 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  display: flex;
+  justify-content: center;
 }

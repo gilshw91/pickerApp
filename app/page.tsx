@@ -1,41 +1,17 @@
 'use client'
+
 import { useEffect, useState } from "react";
-// import { InferGetStaticPropsType } from "next";
 import Image from 'next/image'
-import Link from "next/link";
-import AppPlanCard from "./components/AppPlanCard";
-// import AppLink from "@components/AppLink/AppLink";
-
-// export async function getStaticProps() {
-//   try {
-//     const res = await fetch('http://localhost:3002/api/mockData');
-//     const data = await res.json();
-//     const plans: IPlan[] = data.plans;
-
-//     return {
-//       props: {
-//         plans,
-//       },
-//     };
-//   } catch (error) {
-//     console.error('Error fetching data:', error);
-//     return {
-//       props: {
-//         plans: [],
-//       },
-//     };
-//   }
-// }
+import { AppButton, AppPlanCard } from "./components";
 
 const PickerPage = () => {
-// const PickerPage = ({ plans }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const [selectedPlan, setSelectedPlan] = useState<number>(0);
   const [plansData, setPlansData] = useState<IPlan[]>([]);
+  const [selectedPlan, setSelectedPlan] = useState<number>(-1);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(()=>{
     async function fetchData() {
       const res = await fetch(
-        // 'http://localhost:3002/api/mockData'
         'mocks/cardsData.json'
       );
       const data = await res.json();
@@ -54,6 +30,12 @@ const PickerPage = () => {
   const handleRadioChange = (planId: number) => {
     setSelectedPlan(planId);
   };
+
+  const handleCheckoutAndReviewClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    setIsLoading(true);
+    localStorage.setItem('selectedCard', JSON.stringify(plansData[selectedPlan-1]));
+    setTimeout(() => setIsLoading(false),1000) 
+  }
 
   return (
     <div className="p-4 flex flex-col relative w-[100vw] h-[100vh] items-center space-y-4">
@@ -75,7 +57,8 @@ const PickerPage = () => {
         ))}
       </div>
       <div className='flex flex-col w-[70%] fixed bottom-10 md:static md:max-w-[30vw] pt-40'>
-        <Link href="/checkout" >Review and Checkout</Link>
+        {isLoading && <AppButton redirectUrl="/checkout" typeStyle='btn-contained' label='Loading...' onClick={handleCheckoutAndReviewClick} disabled={isLoading}/>}
+        {!isLoading && <AppButton redirectUrl="/checkout" typeStyle='btn-contained' label='Review and Checkout' onClick={handleCheckoutAndReviewClick} disabled={selectedPlan <= 0} />}
       </div>
     </div>
   );
