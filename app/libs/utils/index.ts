@@ -6,7 +6,7 @@ export const formatText = (text: string) => {
 }
 
 
-export const hasEmptyValues = (obj: {[key:string]: unknown}) => {
+export const hasEmptyValues = (obj: { [key: string]: unknown }) => {
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
       const value = obj[key];
@@ -16,4 +16,15 @@ export const hasEmptyValues = (obj: {[key:string]: unknown}) => {
     }
   }
   return false;
+}
+
+export const boldSpecificWords = (text?: string, wordsToBold?: string[]): string => {
+  if (text && wordsToBold) {
+    const escapedWords = wordsToBold?.map(word => word.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
+    const pattern = new RegExp(`\\b(${escapedWords.join('|')})\\b`, 'gi');
+    const boldedText = text.replace(pattern, '<strong>$&</strong>');
+    return boldedText;
+  } else {
+    return ''
+  }
 }

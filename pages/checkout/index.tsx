@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { AppButton, AppInputField, AppTitle } from '@/components';
+import { AppButton, AppIconTitle, AppInputField, AppButtonsWrapper } from '@/components';
 import { hasEmptyValues } from '@/libs';
 import '@styles/globals.css';
 
@@ -63,23 +63,23 @@ const CheckoutPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     router.push('/confirmation')
-    localStorage.setItem('firstName', fields.firstName )
-    localStorage.setItem('fourDigits', fields.expiryDate.slice(-4,0) )
+    localStorage.setItem('firstName', fields.firstName)
+    localStorage.setItem('fourDigits', fields.expiryDate.slice(-4, 0))
   }
 
   return (
-    <div className="p-4 w-[100vw] flex flex-col items-center">
-      <AppTitle label='Checkout Page' />
-      <form onSubmit={handleSubmit} className='flex flex-col items-center w-[90%]'>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-[100%]">
+    <div className="p-4 w-screen h-screen flex flex-col items-center">
+      <AppIconTitle label='Checkout Page' imgSrc='/lock.svg' className='md:w-[20%]' />
+      <form onSubmit={handleSubmit} className='flex flex-col items-center w-[80%] md:w-[60%]'>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full h-full">
           {fieldsInputs.map((field) => {
             return <AppInputField key={field.name} {...field} />
           })}
         </div>
-        <div className='flex flex-col mt-4 space-y-4 fixed md:static bottom-10 w-[70%] md:pt-40 md:max-w-[30vw]'>
-          <AppButton type="submit" label='Buy Now' className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" disabled={hasEmptyValues(fields)} />
-          <Link href="/" className="btn-text" >Back to Home</Link>
-        </div>
+        <AppButtonsWrapper>
+            <AppButton type="submit" label='Buy Now' disabled={hasEmptyValues(fields)} />
+            <Link href="/" className="btn-text" >Back to Home</Link>
+        </AppButtonsWrapper>
       </form>
     </div>
   );

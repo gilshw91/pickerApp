@@ -6,7 +6,7 @@ interface IAppTitleProps {
 
 const AppTitle = ({ label }: IAppTitleProps) => {
   return (
-    <h1 className="text-[4vw] md:text-[2vw]  font-bold mb-4 text-center text-blue-950 transition-all duration-150 ease-out">
+    <h1 className="text-[4vw] md:text-3xl font-bold text-center text-blue-950 transition-all duration-150 ease-out m-0 lg:whitespace-nowrap">
       {label}
     </h1>
   )

@@ -23,5 +23,6 @@ declare global {
   interface IItem {
     label?: string;
     imgSrc?: string;
+    boldWords?: string[]
   }
 }
