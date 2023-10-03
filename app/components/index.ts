@@ -7,4 +7,5 @@ export { default as AppIconLabel } from './AppIconLabel';
 export { default as AppSections } from './AppSections';
 export { default as AppIconTitle } from './AppIconTitle';
 export { default as AppButtonsWrapper } from './AppButtonsWrapper';
+export { default as AppRedirect } from './AppRedirect';
 

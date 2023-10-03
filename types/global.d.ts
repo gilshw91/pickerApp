@@ -25,4 +25,8 @@ declare global {
     imgSrc?: string;
     boldWords?: string[]
   }
+  
+  type Data = {
+    plans: IPlan[]
+  }
 }
