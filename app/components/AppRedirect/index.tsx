@@ -10,7 +10,7 @@ const AppRedirect = ({ path='/pickerPage' }: IAppRedirectProps) => {
     const router = useRouter();
     useEffect(() => {
         router.push(path);
-    }, []);
+    }, [path, router]);
     return <></>;
 };
 

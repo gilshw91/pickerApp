@@ -34,7 +34,7 @@ const ConfirmationPage: React.FC = () => {
       const cards = getCards(plan)
       setCardsData(cards)
     }
-  }, [])
+  }, [plan])
 
   return (
     <div className="p-4 flex flex-col relative w-screen h-screen items-center space-y-4">
