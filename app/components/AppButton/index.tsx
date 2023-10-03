@@ -20,7 +20,7 @@ const AppButton = ({ label, onClick, typeStyle = 'btn-contained', redirectUrl, c
   }
   redirectUrl
   return (
-    <button className={`${typeStyle}`} onClick={handleClick} disabled={disabled} type={type}>
+    <button className={typeStyle} onClick={handleClick} disabled={disabled} type={type}>
       {label}
     </button>
   )

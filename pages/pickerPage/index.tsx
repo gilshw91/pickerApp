@@ -33,7 +33,7 @@ const PickerPage = ({ plans }: InferGetStaticPropsType<typeof getStaticProps>) =
     setSelectedPlan(id);
   };
 
-  const handleCheckoutAndReviewClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleCheckoutAndReviewClick = (_e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setIsLoading(true);
     usePlanStore.setState(plans[selectedPlanIndex - 1])
     setIsLoading(false)
@@ -41,7 +41,10 @@ const PickerPage = ({ plans }: InferGetStaticPropsType<typeof getStaticProps>) =
 
   return (
     <div className="p-4 w-screen h-screen flex flex-col items-center">
-      <AppIconTitle label='Upgrade now and receive total endpoint protection' imgSrc='/kit.png' width="10%" />
+      <AppIconTitle 
+      label='Upgrade now and receive total endpoint protection' 
+      imgSrc='/kit.png' 
+      imgStyle="w-[10%]" />
       <div className="flex flex-col-reverse md:flex-col">
         <AppSections items={fields} className="sm:hidden md:flex" />
         <AppDivider />
@@ -50,9 +53,9 @@ const PickerPage = ({ plans }: InferGetStaticPropsType<typeof getStaticProps>) =
       <AppButtonsWrapper>
         {isLoading
           ?
-          <AppButton redirectUrl="/confirmation" label='Loading...' onClick={handleCheckoutAndReviewClick} disabled={isLoading} />
+          <AppButton redirectUrl="/checkout" label='Loading...' onClick={handleCheckoutAndReviewClick} disabled={isLoading} />
           :
-          <AppButton redirectUrl="/confirmation" label='Review and Checkout' onClick={handleCheckoutAndReviewClick} disabled={selectedPlanIndex <= 0} />
+          <AppButton redirectUrl="/checkout" label='Review and Checkout' onClick={handleCheckoutAndReviewClick} disabled={selectedPlanIndex <= 0} />
         }
       </AppButtonsWrapper>
     </div>

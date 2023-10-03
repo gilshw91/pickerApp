@@ -70,8 +70,8 @@ const CheckoutPage: React.FC = () => {
   return (
     <div className="p-4 w-screen h-screen flex flex-col items-center">
       <AppIconTitle label='Checkout Page' imgSrc='/lock.svg' className='md:w-[20%]' />
-      <form onSubmit={handleSubmit} className='flex flex-col items-center w-[80%] md:w-[60%]'>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full h-full">
+      <form onSubmit={handleSubmit} className='flex flex-col items-center w-[80%] h-full md:w-[60%]'>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full h-full md:h-auto">
           {fieldsInputs.map((field) => {
             return <AppInputField key={field.name} {...field} />
           })}
