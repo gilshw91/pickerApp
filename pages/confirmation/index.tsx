@@ -2,41 +2,33 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePlanStore } from '@/context/PlanStore';
+import { AppPlanCard, AppButtonsWrapper, AppIconTitle } from '@/components';
 import '@styles/globals.css';
-import { AppIconLabel, AppPlanCard, AppTitle, AppButtonsWrapper, AppIconTitle } from '@/components';
 
 const ConfirmationPage: React.FC = () => {
   const [cardsData, setCardsData] = useState<IPlan[]>([])
+  const data = usePlanStore()
+  const plan  = usePlanStore.getState() as IPlan
 
   useEffect(() => {
-    const data = localStorage.getItem('selectedCard')
-    if (data) {
-      const details: IPlan = JSON.parse(data)
+    if (plan) {
       const cards: IPlan[] = [
         {
           id: 1,
           title: 'Subscription Plan',
-          description: '',
-          currency: '',
-          price: details.title,
-          intervalType: ''
+          price: plan?.title,
         },
         {
           id: 2,
           title: 'Interval',
-          description: '',
-          currency: '',
-          price: details.intervalType.toString(),
-          intervalType: ''
+          price: plan?.intervalType?.toString() || '',
         },
 
         {
           id: 3,
           title: 'Price',
-          description: "",
-          currency: '',
-          price: `${details.currency}${details.price}`,
-          intervalType: ''
+          price: `${plan?.currency}${plan?.price}`,
         },
       ]
       setCardsData(cards)

@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 
 interface IAppButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
-  // onClick: (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   redirectUrl?: string;
   typeStyle?: 'btn-contained' | 'btn-text';
   className?: string;

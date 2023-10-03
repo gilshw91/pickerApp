@@ -3,11 +3,11 @@ export { }
 declare global {
   interface IPlan {
     id: number,
-    intervalType: string,
+    intervalType?: string,
     price: number | string,
-    currency: string,
+    currency?: string,
     title: string,
-    description: string,
+    description?: string,
     intervalValue?: number,
     save?: number
   }
@@ -25,7 +25,7 @@ declare global {
     imgSrc?: string;
     boldWords?: string[]
   }
-  
+
   type Data = {
     plans: IPlan[]
   }

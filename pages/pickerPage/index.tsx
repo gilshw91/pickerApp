@@ -2,39 +2,41 @@
 
 import { useState } from "react";
 import type { InferGetStaticPropsType } from 'next'
+import { usePlanStore } from "@/context/PlanStore";
 import {
   AppButton,
   AppDivider,
   AppIconTitle,
-  AppPlanCard,
   AppSections,
-  AppButtonsWrapper
+  AppButtonsWrapper,
+  AppPlanCardWrapper
 } from "@/components";
 import { fields } from "@/libs";
-import '@styles/globals.css';
 import { getPlans } from "@/../api/getPlans";
+import '@styles/globals.css';
 
 export async function getStaticProps() {
-    const plans = await getPlans();
-    return { props: { plans } };
-  } 
-  
+  const plans = await getPlans();
+  return { props: { plans } };
+}
+
 const PickerPage = ({ plans }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const [selectedPlan, setSelectedPlan] = useState<number>(-1);
+  const [selectedPlanIndex, setSelectedPlan] = useState<number>(-1);
   const [isLoading, setIsLoading] = useState(false);
 
   if (plans.length === 0) {
     return (<div>Loading...</div>)
   }
 
-  const handleRadioChange = (planId: number) => {
-    setSelectedPlan(planId);
+  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const id = Number(e.target.value)
+    setSelectedPlan(id);
   };
 
   const handleCheckoutAndReviewClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setIsLoading(true);
-    localStorage.setItem('selectedCard', JSON.stringify(plans[selectedPlan - 1]));
-    setTimeout(() => setIsLoading(false), 1000)
+    usePlanStore.setState(plans[selectedPlanIndex - 1])
+    setIsLoading(false)
   }
 
   return (
@@ -43,18 +45,14 @@ const PickerPage = ({ plans }: InferGetStaticPropsType<typeof getStaticProps>) =
       <div className="flex flex-col-reverse md:flex-col">
         <AppSections items={fields} className="sm:hidden md:flex" />
         <AppDivider />
-        <div className="flex flex-col items-center space-y-4 w-full relative md:h-auto mt-2">
-          {plans?.map((plan) => (
-            <AppPlanCard key={plan.id} plan={plan} selectedPlan={selectedPlan} onRadioChange={handleRadioChange} />
-          ))}
-        </div>
+        <AppPlanCardWrapper plans={plans} selectedPlan={selectedPlanIndex} onChange={handleRadioChange} />
       </div>
       <AppButtonsWrapper>
         {isLoading
           ?
-          <AppButton redirectUrl="/checkout" label='Loading...' onClick={handleCheckoutAndReviewClick} disabled={isLoading} />
+          <AppButton redirectUrl="/confirmation" label='Loading...' onClick={handleCheckoutAndReviewClick} disabled={isLoading} />
           :
-          <AppButton redirectUrl="/checkout" label='Review and Checkout' onClick={handleCheckoutAndReviewClick} disabled={selectedPlan <= 0} />
+          <AppButton redirectUrl="/confirmation" label='Review and Checkout' onClick={handleCheckoutAndReviewClick} disabled={selectedPlanIndex <= 0} />
         }
       </AppButtonsWrapper>
     </div>

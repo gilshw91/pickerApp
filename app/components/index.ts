@@ -8,4 +8,6 @@ export { default as AppSections } from './AppSections';
 export { default as AppIconTitle } from './AppIconTitle';
 export { default as AppButtonsWrapper } from './AppButtonsWrapper';
 export { default as AppRedirect } from './AppRedirect';
+export { default as AppPlanCardWrapper } from './AppPlanCardWrapper';
+export { default as AppProviders } from './AppProviders';
 

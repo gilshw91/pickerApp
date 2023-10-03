@@ -6,7 +6,7 @@ import AppDivider from '../AppDivider';
 interface IAppPlanCardProps {
   plan: IPlan;
   selectedPlan: number
-  onRadioChange?: (planId: number) => void;
+  onRadioChange?: (e:React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
 }
 const AppAppPlanCard = ({ plan, selectedPlan, onRadioChange, className }: IAppPlanCardProps) => {
@@ -16,10 +16,11 @@ const AppAppPlanCard = ({ plan, selectedPlan, onRadioChange, className }: IAppPl
         {plan.save && <div className="text-white bg-green-400 absolute top-0 text-sm left-1/2 transform -translate-x-1/2 p-1 md:p-2 rounded-b-lg w-max transition-all duration-150 ease-out"><p className="drop-shadow-lg text-xs md:text-sm">Save %{plan.save}</p></div>}
         <div className="flex space-x-2">
           {onRadioChange && <AppInputField
+            value={plan.id}
             type="radio"
             styleByType="input-radio"
             checked={selectedPlan === plan.id}
-            onChange={() => onRadioChange(plan.id)}
+            onChange={onRadioChange}
           />}
           <div className="flex-col">
             <p className="text-l font-bold text-sky-950">{plan.title}</p>
