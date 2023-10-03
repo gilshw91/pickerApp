@@ -1,6 +1,6 @@
 # A Next JS (Reat) App using Tailwing, Deployed to Vercel
 _________________________________
-[You can visit the app here!](picker-app-gilshw91.vercel.app)
+[You can visit the app here!](https://picker-app-gilshw91.vercel.app)
 
 _________________________________
 
